@@ -20,23 +20,22 @@
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-			    <textarea class="form-control" id="description" name="description" rows="3" value="{{ item.description }} | escape">{{ item.description }}</textarea>
+			    <textarea class="form-control" id="description" name="description" rows="5" value="{{ item.description }} | escape">{{ item.description }}</textarea>
 			</div>
 			<div class="form-group">
 				<label for="catChoose">Category</label>
-				<select class="form-control" id="category">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+				<select class="form-control" name="cID">
+					{% for c in categories %}
+						{% if c.name == category_name %}
+							<option selected value="{{ c.id }}">{{ c.name }}</option>
+						{% else %}
+							<option value="{{ c.id }}">{{ c.name }}</option>
+						{% endif %}
+					{% endfor %}
 				</select>
 			</div>
-
-
-
-
 			<button type="submit" class="btn btn-primary">Submit</button>
+			<a href="/catalog" class="btn btn-primary cancel-button" value="Cancel">Cancel</a>
 		</form>
     </div>
 </div>
