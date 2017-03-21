@@ -7,6 +7,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+from sqlalchemy import DateTime
 
 Base = declarative_base()
 
@@ -53,6 +54,7 @@ class Item(Base):
     creator = relationship(Creator)
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
+    # creation_time = Column(DateTime)
 
     # to create JSON API endpoint
     @property

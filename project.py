@@ -51,7 +51,7 @@ def singleCategoryJSON(category_name):
 @app.route('/catalog/')
 def categoryList():
     categories = session.query(Category).all()
-    items = session.query(Item).order_by(Item.title).all()
+    items = session.query(Item).order_by(Item.title).limit(7)
     #list to hold category names
     g = []
     l = []
@@ -77,10 +77,17 @@ def newCategory():
             errormsg = "Please enter a category to add"
             return render_template('newcategory.html', errormsg=errormsg)
         else:
+            # check to see if that category already exists
+            ya = session.query(Category).filter_by(name=cat_name).first()
+            if ya:
+                if ya.name == cat_name:
+                    errormsg = cat_name + " already exists!"
+                    return render_template('newcategory.html',
+                                           errormsg=errormsg)
             newCategory = Category(name=cat_name)
             session.add(newCategory)
             session.commit()
-            # flash("New menu item created!")
+            flash("New category " + cat_name + " created!")
             return redirect(url_for('categoryList'))
     else:
         return render_template('newcategory.html')
@@ -90,9 +97,13 @@ def newCategory():
 def byCategoryMenu(category_name):
     categories = session.query(Category).all()
     category = session.query(Category).filter_by(name=category_name).first()
-    items = session.query(Item).filter_by(category_id=category.id)
-    return render_template('category.html', category=category,
-                           items=items, categories=categories)
+    items = session.query(Item).filter_by(category_id=category.id).all()
+    if items:
+        return render_template('category.html', category=category,
+                               items=items, categories=categories)
+    else:
+        return render_template('category.html', category=category,
+                               categories=categories)
 
 
 @app.route('/catalog/<category_id>/edit', methods=['GET', 'POST'])
@@ -102,10 +113,10 @@ def editCategory(category_id):
         # change db entry
         if request.form['name']:
             category.name = request.form['name']
+            name_now = request.form['name']
             session.add(category)  # updates the existing entry
             session.commit()
-            name_now = category.name
-#           flash(editedItem.name + " has been edited")
+            flash(name_now + " has been edited")
             return redirect('catalog/' + name_now + '/')
         else:  # empty form, prompt to fix
             errormsg = "Please enter a category description"
@@ -120,6 +131,7 @@ def editCategory(category_id):
 @app.route('/catalog/<category_id>/delete', methods=['GET', 'POST'])
 def deleteCategory(category_id):
     deletedCategory = session.query(Category).filter_by(id=category_id).first()
+    nmdel = deletedCategory.name
     if request.method == 'POST':
         # delete it
         session.delete(deletedCategory)
@@ -129,7 +141,7 @@ def deleteCategory(category_id):
         for i in itemsDel:
             session.delete(i)
             session.commit()
-        # flash(deletedItem.name + " has been deleted")
+        flash(nmdel + " has been deleted")
         return redirect('/catalog/')
     else:
         return render_template('deletecategory.html',
@@ -158,15 +170,16 @@ def newItem(category_id):
                                    errormsg=errormsg,
                                    name=item_name,
                                    description=item_description,
-                                   catname=catname)
+                                   category_name=catname,
+                                   category_id=category_id)
         else:
             newitem = Item(category_id=category_id,
                            title=item_name,
                            description=item_description)
             session.add(newitem)
             session.commit()
-            # flash("New menu item created!")
-            return redirect("catalog/" + catname + "/")
+            flash("New item " + item_name + " created!")
+            return redirect("catalog/" + catname)
     else:
         return render_template('newitem.html',
                                category_name=catname,
@@ -186,23 +199,29 @@ def itemDescription(category_name, item_id):
 @app.route('/catalog/<category_name>/<item_id>/edit', methods=['GET', 'POST'])
 def editItem(category_name, item_id):
     item = session.query(Item).filter_by(id=item_id).first()
+    categories = session.query(Category).all()
     if request.method == 'POST':
         # change db entry
         if request.form['name'] and request.form['description']:
             item.title = request.form['name']
+            editedItem = item.title
             item.description = request.form['description']
+            # find category id chosen
+            item.category_id = request.form['cID']
             session.add(item)  # updates the existing entry
             session.commit()
-#           flash(editedItem.name + " has been edited")
+            flash(editedItem + " has been edited")
             return redirect('catalog/' + category_name + '/' + item_id)
         else:  # empty form, prompt to fix
             errormsg = "Please enter a title and description"
             return render_template('edititem.html',
                                    category_name=category_name,
-                                   item=item, errormsg=errormsg)
+                                   item=item, errormsg=errormsg,
+                                   categories=categories)
     elif item:  # it's GET; initial setup
         return render_template('edititem.html',
-                               category_name=category_name, item=item)
+                               category_name=category_name, item=item,
+                               categories=categories)
     else:
         return "program crashing"
 
@@ -212,10 +231,11 @@ def editItem(category_name, item_id):
 def deleteItem(category_name, item_id):
     deletedItem = session.query(Item).filter_by(id=item_id).first()
     if request.method == 'POST':
+        nmdel = deletedItem.title
         # delete it
         session.delete(deletedItem)
         session.commit()
-        # flash(deletedItem.name + " has been deleted")
+        flash(nmdel + " has been deleted")
         return redirect('/catalog/' + category_name)
     else:
         return render_template('deleteitem.html', category_name=category_name,
