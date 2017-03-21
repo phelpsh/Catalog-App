@@ -36,6 +36,14 @@ h3 {
  	line-height: 17px;
  }
 
+ hr {
+ 	margin-top: 0px;
+    margin-bottom: 0px;
+ }
+
+.space-above {
+	margin-top: 15px;
+}
  .max-width{
 	max-width: 940px;
  }
@@ -53,6 +61,18 @@ h3 {
  	background: #7f99a5;
  }
 
+ .cancel-button { 
+    background-color: #FFFFFF;
+    border-color: #D3D3D3;
+    color: #CC0000;
+ }
+
+ .cancel-button:hover {
+ 	background: #CC0000;
+ 	color: #FFFFFF;
+ 	border-color: #2F4F4F;
+ }
+
  .catalog-footer {
     margin-top: 15px;
  }
@@ -63,6 +83,11 @@ h3 {
 
  .items-list {
     padding-left: 20px;
+ }
+
+ .errormsg {
+ 	color: #CC0000;
+    margin-bottom: 15px;
  }
 
  /* Responsive */
