@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Delete Item</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+		<form action="/catalog/{{ category_name }}/{{ deletedItem.id }}/delete" method = 'POST'>
+			<p>Are you sure you want to delete {{ deletedItem.title }}?</p>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			<a href="/catalog/{{ category_name }}/{{ deletedItem.id }}" class="btn btn-warning" value="Cancel">Cancel</a>
+			
+		</form>
+	</div>
+</div>
+	
+
+{% endblock %}

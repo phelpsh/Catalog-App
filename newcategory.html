@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="row">
+        <div class="col-md-12">
+            <h2>New Category</h2>
+        </div>
+    </div>
+
+	<div class="row">
+        <div class="col-md-12">
+            <form action="{{ url_for('newCategory') }}" method = 'POST'>
+
+				<div class="form-group">
+				   <label for="namelabel">Name</label>
+				   <input type="text" class="form-control" name="name" placeholder="Category name">
+				</div>
+				<div class="errormsg">
+					{{ errormsg }} 
+				</div>
+
+				 <button type="submit" class="btn btn-primary">Create</button>
+			</form>
+        </div>
+    </div>
+
+
+	
+
+{% endblock %}

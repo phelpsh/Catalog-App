@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Delete Category</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+		<form action="/catalog/{{ category_id }}/delete" method = "POST">
+			<div> 
+				Are you sure you want to delete {{category}} and all its associated items?
+			</div>
+			<div class="catalog-buttons">
+				<button type="submit" class="btn btn-primary">Submit</button>
+				<a href="/catalog/{{ category }}" class="btn btn-warning" value="Cancel">Cancel</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

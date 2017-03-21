@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	{% if categories %}
+
+	<div class="row">
+        <div class="col-sm-4">
+            <h2>Categories</h2>
+			{% for c in categories %}
+				<div class="category-name">
+					<a href = "{{ url_for('byCategoryMenu', category_name=c.name) }}">{{c.name}}</a>
+				</div>
+			{% endfor %}
+			
+        </div>
+		<div class="col-sm-8">
+            <h2>{{ category.name }}</h2>
+			 {% for i in items %}
+                <div class="category-name">
+                    <a href = "/catalog/{{ category.name }}/{{i.id}}">{{ i.title }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+    
+    <div class="row">
+        <div class="col-md-12">
+            &nbsp;
+        </div>
+    </div>
+	
+
+<div class="row">
+	<div class="col-md-12">
+		<a href="{{ url_for('newItem', category_id=category.id) }}" class="btn btn-warning btn-sm">New Item</a>
+		<a href = "{{ url_for('editCategory', category_id=category.id) }}" class="btn btn-warning btn-sm">Edit Category</a>
+		<a href = "{{ url_for('deleteCategory', category_id=category.id) }}" class="btn btn-warning btn-sm">Delete Category</a>
+	</div>
+</div> 
+
+{% endblock %}

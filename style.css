@@ -1,0 +1,80 @@
+* {
+	font-family: 'Droid Serif', serif;
+}
+
+h1 {
+	font-size: 35px;
+	color: #607d8b;
+	margin-bottom: 0px;
+}
+
+h2 {
+	font-size: 20px;
+	color: #607d8b;
+}
+
+h3 {
+	font-size: 18px;
+	color: #4A4A4A;
+	line-height: 23px;
+}
+
+ p {
+ 	font-size: 14px;
+ 	color: #7B7573;
+ 	font-weight: 400;
+ }
+
+ strong {
+ 	font-size: 16px;
+ 	color: #7B7573;
+ }
+
+ a {
+ 	font-size: 14px;
+ 	color: #0093B9;
+ 	line-height: 17px;
+ }
+
+ .max-width{
+	max-width: 940px;
+ }
+
+ .category-name {
+ 	margin-bottom: 10px;
+ }
+
+ .home-button { 
+    background-color: #607d8b;
+    border-color: #607d8b;
+ }
+
+ .home-button:hover {
+ 	background: #7f99a5;
+ }
+
+ .catalog-footer {
+    margin-top: 15px;
+ }
+
+ .catalog-buttons {
+	 margin-top: 18px;
+ }
+
+ .items-list {
+    padding-left: 20px;
+ }
+
+ /* Responsive */
+
+@media screen and (max-width: 715px) {
+    h1 { font-size: 50px; }
+}
+
+@media screen and (max-width: 665px) {
+    h1 { font-size: 35px; }
+}
+
+@media screen and (max-width: 450px) {
+    h1 { font-size: 28px; }
+}

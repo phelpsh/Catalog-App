@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	{% if categories %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>Categories</h2>
+			{% for c in categories %}
+				<div class="category-name">
+					<a href = "{{ url_for('byCategoryMenu', category_name=c.name) }}">{{c.name}}</a>
+				</div>
+			{% endfor %}
+			
+        </div>
+        <div class="col-sm-8">
+            <h2>Latest Items (category)</h2>
+            {% for i in items %}
+                <div class="category-name">
+                    <a href = "/catalog/{{ cats[i.title] }}/{{i.id}}">{{ i.title }}</a>
+                    ({{ cats[i.title] }})
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="row">
+        <div class="col-md-12">
+            Category list is empty.
+        </div>
+    </div>
+
+	{% endif %}
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <a href = "{{ url_for('newCategory') }}">New Category</a>
+        </div>
+    </div>
+	
+
+{% endblock %}

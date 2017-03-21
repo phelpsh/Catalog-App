@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	</head>
+
+<body class="max-width">
+
+<header class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Categories Application with OAuth</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>By Heather Phelps, Full Stack Developer</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+
+</header>
+
+<main> 
+    <div class="container-fluid">
+
+        {% block content %}
+        {% endblock %}
+   
+   </div>
+</main>
+
+<footer class="container-fluid">
+	<div class="row catalog-footer">
+        <div class="col-md-12">
+            <a class="btn btn-success home-button" href="/catalog" role="button">Home</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
