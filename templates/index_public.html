@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_unlogged.html" %}
 
 {% block content %}
 
 	{% if categories %}
 
-    <div class="row">
+     <div class="row">
         <div class="col-sm-4">
             
             <div class="panel panel-default">
@@ -13,7 +13,7 @@
                     <div class="panel-body"><a href = "{{ url_for('byCategoryMenu', category_name=c.name) }}">{{c.name}}</a></div>
                 {% endfor %}
             </div>
-			
+            
         </div>
         <div class="col-sm-8">
             <div class="panel panel-default">
@@ -39,12 +39,6 @@
  	<div class="row">
         <div class="col-md-12">
             <hr>
-        </div>
-    </div>
-
- 	<div class="row">
-        <div class="col-md-12 space-above">
-            <a href="{{ url_for('newCategory') }}" class="btn btn-success">New Category</a> <i>(requires login)</i>
         </div>
     </div>
 	

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_unlogged.html" %}
 
 {% block content %}
 
@@ -34,7 +34,7 @@
 				</div>
 
 			{% endif %}
-			<a href="{{ url_for('newItem', category_id=category.id) }}" class="btn btn-warning btn-xs">New Item</a>
+			
 
         </div>
     </div>
@@ -46,14 +46,5 @@
             &nbsp;
         </div>
     </div>
-	
-{% if buttons %}
-<div class="row">
-	<div class="col-md-12">
-		<a href = "{{ url_for('editCategory', category_id=category.id) }}" class="btn btn-warning btn-sm">Edit Category</a>
-		<a href = "{{ url_for('deleteCategory', category_id=category.id) }}" class="btn btn-warning btn-sm">Delete Category</a>
-	</div>
-</div> 
-{% endif %}
 
 {% endblock %}

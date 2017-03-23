@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_unlogged.html" %}
 
 {% block content %}
 
@@ -13,20 +13,11 @@
             <p>{{ item.description }}</p>
         </div>
     </div>
-
 	<div class="row">
         <div class="col-md-12">
             <p>&nbsp;</p>
         </div>
     </div>
-
-    {% if buttons %}
-    	<div class="row">
-    		<div class="col-md-12">
-    			<a href = "/catalog/{{category_name}}/{{item.id}}/edit" class="btn-sm btn btn-warning">Edit Item</a>
-    			<a href = "/catalog/{{category_name}}/{{item.id}}/delete" class="btn-sm btn btn-warning">Delete Item</a>
-    		</div>
-    	</div> 
-    {% endif %}
+	
 
 {% endblock %}
