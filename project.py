@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 from flask import redirect, url_for, flash, jsonify
 from flask import session as login_session
-import random, string
+import random
+import string
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Creator, Category, Item
@@ -102,7 +103,7 @@ def categoryList():
     g = []
     l = []
     for i in items:
-        #get category name
+        # get category name
         catname = session.query(Category).filter_by(id=i.category_id).one()
         g.append(i.title)
         g.append(catname.name)
@@ -137,7 +138,7 @@ def newCategory():
                                            errormsg=errormsg)
             newCategory = Category(name=cat_name,
                                    creator_id=login_session['user_id'])
-            #login_session['user_id'] not being set....
+            # login_session['user_id'] not being set....
             session.add(newCategory)
             session.commit()
             flash("New category " + cat_name + " created!")
@@ -352,23 +353,25 @@ def deleteItem(category_name, item_id):
 # Login stuff
 ##############################################################################
 
+
 # Create anti-forgery state token
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
-    #return "The current session state is %s" % login_session['state']
-    return render_template('login.html', STATE = state)
+    # return "The current session state is %s" % login_session['state']
+    return render_template('login.html', STATE=state)
     # return render_template('login.html')
+
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
-        #response.headers['Content-Type'] = 'application/json'
-        response.headers['Content-Type'] = 'application-json' # heather
+        # response.headers['Content-Type'] = 'application/json'
+        response.headers['Content-Type'] = 'application-json'  # heather
         return response
     # Obtain authorization code
     code = request.data
@@ -415,7 +418,7 @@ def gconnect():
     stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
+        response = make_response(json.dumps('Current user is already connected.'),  # NOQA
                                  200)
         response.headers['Content-Type'] = 'application/json'
         return response
@@ -448,7 +451,7 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '    # NOQA
     flash("You are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -461,6 +464,7 @@ def gconnect():
 # Logout
 ##############################################################################
 
+
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session['access_token']
@@ -469,10 +473,10 @@ def gdisconnect():
     print login_session['username']
     if access_token is None:
         print 'Access Token is None'
-        response = make_response(json.dumps('Current user not connected.'), 401)
+        response = make_response(json.dumps('Current user not connected.'), 401)  # NOQA
         response.headers['Content-Type'] = 'application/json'
         return response
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
+    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']  # NOQA
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
     print 'result is '
@@ -483,8 +487,6 @@ def gdisconnect():
         del login_session['username']
         del login_session['email']
         del login_session['picture']
-        # response = make_response(json.dumps('Successfully disconnected.'), 200)
-        # response.headers['Content-Type'] = 'application/json'
         flash("You are now logged out.")
         return redirect('/')
         # return response
@@ -511,5 +513,3 @@ if __name__ == '__main__':
 ##############################################################################
 # End encryption key
 ##############################################################################
-
-
