@@ -18,23 +18,26 @@
 </div>
 
 <main> 
-    <div class="container-fluid text-center">
-        <!--MESSAGE FLASHING EXAMPLE -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <!--MESSAGE FLASHING EXAMPLE -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
 
-                {% for message in messages %}
-                    <p class="errormsg">{{message}}</p>
-                {% endfor %}
-            
-            {% endif %}
-        {% endwith %}
+                    {% for message in messages %}
+                        <p class="errormsg">{{message}}</p>
+                    {% endfor %}
+                
+                {% endif %}
+            {% endwith %}
+            </div>
+        </div>
 
+            {% block content %}
+            {% endblock %}
 
-        {% block content %}
-        {% endblock %}
-   
-   </div>
+    </div>
 </main>
 
 <footer class="container-fluid">
