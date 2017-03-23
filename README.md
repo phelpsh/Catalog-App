@@ -7,6 +7,7 @@ Project created in Python with Bootstrap, Flask, Jinja2, SQL Alchemy, sqlite, an
 + From the VM interface (vagrant ssh)
 + cd /vagrant
 + cd catalog
++ copy the files listed below to this location
 + ls (to check filenames)
 + run using: python project.py
 + runs in localhost:5000
@@ -25,24 +26,25 @@ JSON endpoints can be reached in three ways:
 /:<br>
    - database_setup.py <br>
    - project.py <br>
+   - client_secrets.json <br>
 
 /static: <br>
    - style.css <br>
    
 /templates: <br>
-   - base_logged.html <br>
+   - base_unlogged.html <br>
    - base.html <br>
-   - comments.html <br>
-   - edit_post.html <br>
-   - edit_post2.html <br>
-   - editcomment.html <br>
+   - edititem.html <br>
+   - deleteitem.html <br>
+   - newitem.html <br>
+   - deletecategory.html <br>
+   - editcategory.html <br>
+   - newcategory.html <br>
    - index.html <br>
    - login.html <br>
-   - newcomment.html <br>
-   - noposts.html <br>
-   - permacomment.html <br>
-   - permalink.html <br>
-   - signup.html <br>
-   - success.html <br>
-   - successlike.html <br>
-   - welcome.html <br>
+   - item_public.html <br>
+   - category_public.html <br>
+   - index_public.html <br>
+   - item.html <br>
+   - category.html <br>
+   - category.html <br>
