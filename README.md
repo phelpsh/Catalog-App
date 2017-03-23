@@ -9,6 +9,7 @@ Project created in Python with Bootstrap, Flask, Jinja2, SQL Alchemy, sqlite, an
 + cd catalog
 + copy the files listed below to this location
 + ls (to check filenames)
++ set up database using: python database_setup.py
 + run using: python project.py
 + runs in localhost:5000
 + Public can view categories and items
