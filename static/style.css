@@ -2,11 +2,11 @@
 	font-family: 'Droid Serif', serif;
 }
 
-h1 {
+/*h1 {
 	font-size: 35px;
 	color: #607d8b;
 	margin-bottom: 0px;
-}
+}*/
 
 h2 {
 	font-size: 20px;
@@ -19,11 +19,11 @@ h3 {
 	line-height: 23px;
 }
 
- p {
+ /*p {
  	font-size: 14px;
  	color: #7B7573;
  	font-weight: 400;
- }
+ }*/
 
  strong {
  	font-size: 16px;
@@ -40,6 +40,15 @@ h3 {
  	margin-top: 0px;
     margin-bottom: 0px;
  }
+
+ .container-fluid {
+    padding-left: 20px;
+}
+
+.jumbotron {
+      background-color: #607d8b;
+      color: #fff;
+  }
 
 .space-above {
 	margin-top: 15px;
@@ -92,14 +101,20 @@ h3 {
 
  /* Responsive */
 
-@media screen and (max-width: 715px) {
-    h1 { font-size: 50px; }
+/*@media screen and (max-width: 715px) {
+    h1 { font-size: 30px; }
+    p { font-size: 20px; }
+    .jumbotron p {
+    	font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 665px) {
-    h1 { font-size: 35px; }
+    h1 { font-size: 25px; }
+    p { font-size: 20px; }
 }
 
 @media screen and (max-width: 450px) {
-    h1 { font-size: 28px; }
-}
+    h1 { font-size: 20px; }
+    p { font-size: 16px; }
+}*/
