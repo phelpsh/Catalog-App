@@ -1,6 +1,6 @@
 # Catalog Application
 
-Project created in Python with Bootstrap, Flask, Jinja2, SQL Alchemy, sqlite, and uses OAuth 2.0 for Google signin.
+Developed a content management system using the Flask framework in Python. Authentication is provided via OAuth and all data is stored within a PostgreSQL database.
 
 ## Quickstart:
 
